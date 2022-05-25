@@ -10,8 +10,12 @@
 #import "APIManager.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "Tweet.h"
+
 
 @interface TimelineViewController ()
+@property (nonatomic, strong) NSMutableArray *tweetsArray;
+
 
 @end
 
@@ -24,13 +28,16 @@
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
+            self.tweetsArray = (NSMutableArray *)tweets;
+
+            for (Tweet *tweet in tweets) {
+                NSString *text = tweet.text;
                 NSLog(@"%@", text);
             }
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        
     }];
 }
 
@@ -40,8 +47,7 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
-    
-    NSLog(@"did tap");
+//    When user taps logout button go back to loginViewController and reset API
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
