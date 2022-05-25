@@ -11,19 +11,35 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "Tweet.h"
+#import "User.h"
+#import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
 
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *tweetsArray;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 
 @end
 
 @implementation TimelineViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    [self getTimeline];
+    
+    // Initialize a UIRefreshControl
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getTimeline) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+-(void)getTimeline {
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -38,7 +54,12 @@
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
         
+        [self.tableView reloadData];
+        
+        [self.refreshControl endRefreshing];
+        
     }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +77,29 @@
     appDelegate.window.rootViewController = loginViewController;
     
     [[APIManager shared] logout];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tweetsArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    
+    Tweet *tweet = self.tweetsArray[indexPath.row];
+    
+    cell.username.text = tweet.user.name;
+    cell.tweetContent.text = tweet.text;
+    
+    NSString *URLString = [tweet.user.profilePicture stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+
+    cell.profileImage.image = [UIImage imageWithData:urlData];
+
+    return cell;
+    
 }
 
 
