@@ -118,6 +118,10 @@
     
 }
 
+- (void)didTweet:(Tweet *)tweet {
+    [self.tweetsArray insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+}
 
 /*
 #pragma mark - Navigation

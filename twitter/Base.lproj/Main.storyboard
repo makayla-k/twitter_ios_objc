@@ -214,19 +214,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-cq-WUI">
-                                <rect key="frame" x="0.0" y="56" width="375" height="34"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="68T-JF-SFP">
+                                <rect key="frame" x="8" y="64" width="359" height="575"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ufZ-2x-euG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="sCN-cq-WUI" firstAttribute="top" secondItem="ufZ-2x-euG" secondAttribute="top" id="fo3-rn-oOy"/>
-                            <constraint firstItem="ufZ-2x-euG" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sCN-cq-WUI" secondAttribute="bottom" constant="8" id="hrr-bb-X3e"/>
-                            <constraint firstItem="ufZ-2x-euG" firstAttribute="trailing" secondItem="sCN-cq-WUI" secondAttribute="trailing" id="lUx-jm-HNc"/>
-                            <constraint firstItem="sCN-cq-WUI" firstAttribute="leading" secondItem="ufZ-2x-euG" secondAttribute="leading" id="qA6-Df-si2"/>
+                            <constraint firstItem="ufZ-2x-euG" firstAttribute="trailing" secondItem="68T-JF-SFP" secondAttribute="trailing" constant="8" id="2bC-xd-VDM"/>
+                            <constraint firstItem="68T-JF-SFP" firstAttribute="leading" secondItem="ufZ-2x-euG" secondAttribute="leading" constant="8" id="QBe-2b-dIJ"/>
+                            <constraint firstItem="68T-JF-SFP" firstAttribute="top" secondItem="ufZ-2x-euG" secondAttribute="top" constant="8" id="iPe-Ud-KT7"/>
+                            <constraint firstItem="ufZ-2x-euG" firstAttribute="bottom" secondItem="68T-JF-SFP" secondAttribute="bottom" constant="8" id="imn-fb-Hey"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kqr-jT-0MU">
@@ -254,7 +256,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tweetText" destination="sCN-cq-WUI" id="29U-ec-X19"/>
+                        <outlet property="tweetText" destination="68T-JF-SFP" id="sSS-aM-Of0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWG-gV-lqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -306,6 +308,9 @@
         <image name="favor-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

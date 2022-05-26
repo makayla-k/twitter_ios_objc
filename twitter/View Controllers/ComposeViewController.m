@@ -10,7 +10,8 @@
 #import "APIManager.h"
 
 @interface ComposeViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *tweetText;
+
+@property (weak, nonatomic) IBOutlet UITextView *tweetText;
 
 @end
 
@@ -35,6 +36,7 @@
         }
         else{
             [self.delegate didTweet:tweet];
+            [self dismissViewControllerAnimated:true completion:nil];
             NSLog(@"Compose Tweet Success!");
         }
     }];
