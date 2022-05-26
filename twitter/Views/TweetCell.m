@@ -15,6 +15,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.profileImage.layer.cornerRadius = 35;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
