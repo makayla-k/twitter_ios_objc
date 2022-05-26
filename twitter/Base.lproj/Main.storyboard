@@ -105,11 +105,17 @@
                                                     <rect key="frame" x="323" y="65" width="35" height="30"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title=" " image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="bvn-zh-aha" eventType="touchUpInside" id="Kvt-mh-nUk"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1d-xC-43v">
                                                     <rect key="frame" x="228" y="65" width="35" height="30"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title=" " image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="bvn-zh-aha" eventType="touchUpInside" id="m2f-eU-c14"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

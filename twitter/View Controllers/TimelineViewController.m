@@ -89,6 +89,7 @@
     
     Tweet *tweet = self.tweetsArray[indexPath.row];
     
+    cell.tweet = tweet;
     cell.username.text = tweet.user.name;
     cell.tweetContent.text = tweet.text;
     
@@ -97,6 +98,18 @@
     NSData *urlData = [NSData dataWithContentsOfURL:url];
 
     cell.profileImage.image = [UIImage imageWithData:urlData];
+    
+    if(tweet.favorited) {
+        [cell.favBtn setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    } else {
+        [cell.favBtn setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
+    
+    if(tweet.retweeted) {
+        [cell.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+    } else {
+        [cell.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    }
 
     return cell;
     
