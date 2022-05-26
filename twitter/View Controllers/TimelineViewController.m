@@ -14,9 +14,10 @@
 #import "User.h"
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
 
-@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate,UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *tweetsArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -92,6 +93,8 @@
     cell.tweet = tweet;
     cell.username.text = tweet.user.name;
     cell.tweetContent.text = tweet.text;
+    cell.numOfRetweets.text = [NSString stringWithFormat: @"%d", tweet.retweetCount];
+    cell.numOfFavorites.text = [NSString stringWithFormat: @"%d", tweet.favoriteCount];
     
     NSString *URLString = [tweet.user.profilePicture stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *url = [NSURL URLWithString:URLString];
@@ -118,13 +121,15 @@
 
 /*
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
 */
+
+//
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    segue for ComposeViewController
+   UINavigationController *navigationController = [segue destinationViewController];
+   ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+   composeController.delegate = self;
+}
 
 
 @end
