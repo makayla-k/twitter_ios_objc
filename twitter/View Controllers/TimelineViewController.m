@@ -97,11 +97,42 @@
     cell.numOfRetweets.text = [NSString stringWithFormat: @"%d", tweet.retweetCount];
     cell.numOfFavorites.text = [NSString stringWithFormat: @"%d", tweet.favoriteCount];
     
+//    cell.photoMediaImage.hidden = YES;
+    
     NSString *URLString = [tweet.user.profilePicture stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
 
     cell.profileImage.image = [UIImage imageWithData:urlData];
+    
+    if ([cell.tweet.entities[@"user_mentions"] count] != 0) {
+        NSLog(@"%@", cell.tweet.entities[@"user_mentions"][0]);
+        
+        NSString *userMentioned = cell.tweet.entities[@"user_mentions"][0][@"screen_name"];
+        
+        NSRange range = [cell.tweet.text rangeOfString:userMentioned];
+        
+        NSMutableAttributedString * mention = [[NSMutableAttributedString alloc] initWithString: cell.tweet.text];
+        
+        NSURL *myUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", userMentioned]];
+        
+        [mention addAttribute: NSLinkAttributeName value:myUrl range: NSMakeRange(range.location, range.length)];
+        cell.tweetContent.attributedText = mention;
+    }
+    
+    if([cell.tweet.entities[@"media"] count] != 0) {
+        NSLog(@"%@", cell.tweet.entities[@"media"][0]);
+        cell.photoMediaImage.hidden = NO;
+        
+        NSString *URLPhotoMediaString = cell.tweet.entities[@"media"][0][@"media_url_https"];
+        NSURL *photoMediaURL = [NSURL URLWithString: [URLPhotoMediaString  stringByAppendingString:@":thumb"]];
+        NSData *photoMediaURLData = [NSData dataWithContentsOfURL:photoMediaURL];
+        
+        NSLog(@"%@", photoMediaURL);
+
+        cell.photoMediaImage.image = [UIImage imageWithData:photoMediaURLData];
+
+    }
     
     if(tweet.favorited) {
         [cell.favBtn setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];

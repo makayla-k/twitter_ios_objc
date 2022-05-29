@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *favBtn;
 @property (weak, nonatomic) IBOutlet UILabel *numOfRetweets;
 @property (weak, nonatomic) IBOutlet UILabel *numOfFavorites;
+@property (weak, nonatomic) IBOutlet UIImageView *photoMediaImage;
 
 @end
 
