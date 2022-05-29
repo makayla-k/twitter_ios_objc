@@ -49,6 +49,9 @@
         formatter.timeStyle = NSDateFormatterNoStyle;
         // Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
+        
+//        Get entities
+        self.entities = dictionary[@"entities"];
     }
     return self;
 }
