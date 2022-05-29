@@ -9,9 +9,10 @@
 #import "ComposeViewController.h"
 #import "APIManager.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextView *tweetText;
+@property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
+@property (weak, nonatomic) IBOutlet UILabel *characterCountLabel;
 
 @end
 
@@ -20,6 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tweetTextView.delegate = self;
+    [self.characterCountLabel setText:[NSString stringWithFormat:@"%d", 280]];
+}
+
+// Keep track of the number of characters the user has left
+- (void)textViewDidChange:(UITextView *)textView {
+    // Length of tweet can't exceed 280 characters
+    NSInteger maxLength = 280;
+    
+    NSInteger charactersLeft = 280 - [[self.tweetTextView text] length];
+    [self.characterCountLabel setText:[NSString stringWithFormat:@"%ld", (long)charactersLeft]];
+    
 }
 
 - (IBAction)closeBtn:(id)sender {
@@ -27,8 +40,8 @@
 }
 
 - (IBAction)tweetBtn:(id)sender {
-    NSLog([self.tweetText text]);
-    NSString *tweetStr = [self.tweetText text];
+//    NSLog([self.tweetText text]);
+    NSString *tweetStr = [self.tweetTextView text];
     
     [[APIManager shared]postStatusWithText:tweetStr completion:^(Tweet *tweet, NSError *error) {
         if(error){

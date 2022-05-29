@@ -17,6 +17,11 @@
     // Initialization code
     
     self.profileImage.layer.cornerRadius = 35;
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileImageTapDetected)];
+    singleTap.numberOfTapsRequired = 1;
+    [self.profileImage setUserInteractionEnabled:YES];
+    [self.profileImage addGestureRecognizer:singleTap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -88,5 +93,11 @@
         }];
     }
 }
+
+-(void)profileImageTapDetected{
+    NSLog(@"single Tap on imageview %@", self.username.text);
+    
+    
+  }
 
 @end

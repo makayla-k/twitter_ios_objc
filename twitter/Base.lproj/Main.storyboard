@@ -91,6 +91,9 @@
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rlR-og-KGR">
                                                     <rect key="frame" x="6" y="8" width="70" height="70"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                    </accessibility>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="Mug-fE-WOK"/>
                                                         <constraint firstAttribute="width" constant="70" id="vkw-7R-IWD"/>
@@ -324,20 +327,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="68T-JF-SFP">
-                                <rect key="frame" x="8" y="64" width="359" height="575"/>
+                                <rect key="frame" x="8" y="64" width="359" height="333"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5D-5u-gcr">
+                                <rect key="frame" x="325" y="427" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ufZ-2x-euG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ufZ-2x-euG" firstAttribute="trailing" secondItem="68T-JF-SFP" secondAttribute="trailing" constant="8" id="2bC-xd-VDM"/>
+                            <constraint firstItem="b5D-5u-gcr" firstAttribute="top" secondItem="68T-JF-SFP" secondAttribute="bottom" constant="30" id="5SC-yr-vEF"/>
+                            <constraint firstItem="ufZ-2x-euG" firstAttribute="trailing" secondItem="b5D-5u-gcr" secondAttribute="trailing" constant="8" id="Gsb-M9-MqM"/>
                             <constraint firstItem="68T-JF-SFP" firstAttribute="leading" secondItem="ufZ-2x-euG" secondAttribute="leading" constant="8" id="QBe-2b-dIJ"/>
                             <constraint firstItem="68T-JF-SFP" firstAttribute="top" secondItem="ufZ-2x-euG" secondAttribute="top" constant="8" id="iPe-Ud-KT7"/>
-                            <constraint firstItem="ufZ-2x-euG" firstAttribute="bottom" secondItem="68T-JF-SFP" secondAttribute="bottom" constant="8" id="imn-fb-Hey"/>
+                            <constraint firstItem="ufZ-2x-euG" firstAttribute="bottom" secondItem="68T-JF-SFP" secondAttribute="bottom" constant="250" id="imn-fb-Hey"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kqr-jT-0MU">
@@ -365,7 +376,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tweetText" destination="68T-JF-SFP" id="sSS-aM-Of0"/>
+                        <outlet property="characterCountLabel" destination="b5D-5u-gcr" id="LVB-7h-5CM"/>
+                        <outlet property="tweetTextView" destination="68T-JF-SFP" id="IA7-uy-lEB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWG-gV-lqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
