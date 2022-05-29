@@ -28,10 +28,13 @@
 // Keep track of the number of characters the user has left
 - (void)textViewDidChange:(UITextView *)textView {
     // Length of tweet can't exceed 280 characters
-    NSInteger maxLength = 280;
     
     NSInteger charactersLeft = 280 - [[self.tweetTextView text] length];
     [self.characterCountLabel setText:[NSString stringWithFormat:@"%ld", (long)charactersLeft]];
+    
+    if([[self.tweetTextView text] length] > 280) {
+        self.tweetTextView.editable = NO;
+    }
     
 }
 
