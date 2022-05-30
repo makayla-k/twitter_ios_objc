@@ -57,6 +57,11 @@
         if(self.entities[@"media"] != nil) {
             self.media = self.entities[@"media"];
         }
+        
+//        get user mentions
+        if(self.entities[@"user_mentions"] != nil) {
+            self.userMentions = self.entities[@"user_mentions"];
+        }
     }
     return self;
 }

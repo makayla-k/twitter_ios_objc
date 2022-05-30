@@ -30,21 +30,21 @@
     self.profileImage.image = [UIImage imageWithData:urlData];
     self.profileImage.layer.cornerRadius = 35;
     
-    if ([self.tweet.entities[@"user_mentions"] count] != 0) {
-        NSLog(@"%@", self.tweet.entities[@"user_mentions"][0]);
-        
-        NSString *userMentioned = self.tweet.entities[@"user_mentions"][0][@"screen_name"];
-        
-        NSRange range = [self.tweet.text rangeOfString:userMentioned];
-        
-        NSMutableAttributedString * mention = [[NSMutableAttributedString alloc] initWithString: self.tweet.text];
-        
-        NSURL *myUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", userMentioned]];
-        
-        [mention addAttribute: NSLinkAttributeName value:myUrl range: NSMakeRange(range.location, range.length)];
-        self.tweetContent.attributedText = mention;
-    }
-
+    //    if user mentioned link to their profile
+        if ([self.tweet.userMentions count] > 0) {
+            NSLog(@"%@", self.tweet.userMentions[0]);
+            
+            NSString *userMentioned = self.tweet.userMentions[0][@"screen_name"];
+            
+            NSRange range = [self.tweet.text rangeOfString:userMentioned];
+            
+            NSMutableAttributedString * mention = [[NSMutableAttributedString alloc] initWithString: self.tweet.text];
+            
+            NSURL *myUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", userMentioned]];
+            
+            [mention addAttribute: NSLinkAttributeName value:myUrl range: NSMakeRange(range.location-1, range.length+1)];
+            self.tweetContent.attributedText = mention;
+        }
 }
 
 /*

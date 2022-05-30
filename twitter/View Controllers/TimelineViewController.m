@@ -105,10 +105,11 @@
 
     cell.profileImage.image = [UIImage imageWithData:urlData];
     
-    if ([cell.tweet.entities[@"user_mentions"] count] != 0) {
-        NSLog(@"%@", cell.tweet.entities[@"user_mentions"][0]);
+//    if user mentioned link to their profile
+    if ([cell.tweet.userMentions count] > 0) {
+        NSLog(@"%@", cell.tweet.userMentions[0]);
         
-        NSString *userMentioned = cell.tweet.entities[@"user_mentions"][0][@"screen_name"];
+        NSString *userMentioned = cell.tweet.userMentions[0][@"screen_name"];
         
         NSRange range = [cell.tweet.text rangeOfString:userMentioned];
         
@@ -116,7 +117,7 @@
         
         NSURL *myUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", userMentioned]];
         
-        [mention addAttribute: NSLinkAttributeName value:myUrl range: NSMakeRange(range.location, range.length)];
+        [mention addAttribute: NSLinkAttributeName value:myUrl range: NSMakeRange(range.location-1, range.length+1)];
         cell.tweetContent.attributedText = mention;
     }
     
@@ -131,10 +132,13 @@
         NSLog(@"%@", photoMediaURL);
 
         cell.photoMediaImage.image = [UIImage imageWithData:photoMediaURLData];
+        
+        cell.photoMediaBottomConstraint.constant = 8;
 
     }
     else{
         cell.photoMediaImage.image = nil;
+        cell.photoMediaBottomConstraint.constant = 0;
     }
     
     if(tweet.favorited) {
