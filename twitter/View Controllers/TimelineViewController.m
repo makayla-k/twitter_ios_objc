@@ -120,11 +120,11 @@
         cell.tweetContent.attributedText = mention;
     }
     
-    if([cell.tweet.entities[@"media"] count] != 0) {
-        NSLog(@"%@", cell.tweet.entities[@"media"][0]);
+//    gets media object and sets photoMediaImage unless media is nill
+    if([cell.tweet.media count] > 0) {
         cell.photoMediaImage.hidden = NO;
         
-        NSString *URLPhotoMediaString = cell.tweet.entities[@"media"][0][@"media_url_https"];
+        NSString *URLPhotoMediaString = cell.tweet.media[0][@"media_url_https"];
         NSURL *photoMediaURL = [NSURL URLWithString: [URLPhotoMediaString  stringByAppendingString:@":thumb"]];
         NSData *photoMediaURLData = [NSData dataWithContentsOfURL:photoMediaURL];
         
@@ -132,6 +132,9 @@
 
         cell.photoMediaImage.image = [UIImage imageWithData:photoMediaURLData];
 
+    }
+    else{
+        cell.photoMediaImage.image = nil;
     }
     
     if(tweet.favorited) {

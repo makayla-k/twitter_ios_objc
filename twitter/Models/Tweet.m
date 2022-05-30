@@ -52,6 +52,11 @@
         
 //        Get entities
         self.entities = dictionary[@"entities"];
+        
+//        get media
+        if(self.entities[@"media"] != nil) {
+            self.media = self.entities[@"media"];
+        }
     }
     return self;
 }

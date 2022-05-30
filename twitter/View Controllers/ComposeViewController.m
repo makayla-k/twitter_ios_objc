@@ -32,7 +32,7 @@
     NSInteger charactersLeft = 280 - [[self.tweetTextView text] length];
     [self.characterCountLabel setText:[NSString stringWithFormat:@"%ld", (long)charactersLeft]];
     
-    if([[self.tweetTextView text] length] > 280) {
+    if([[self.tweetTextView text] length] >= 280) {
         self.tweetTextView.editable = NO;
     }
     
