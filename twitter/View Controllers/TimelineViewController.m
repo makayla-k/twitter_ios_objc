@@ -145,6 +145,7 @@
         [cell.favBtn setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
     } else {
         [cell.favBtn setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+        
     }
     
     if(tweet.retweeted) {

@@ -254,6 +254,9 @@
                                 <rect key="frame" x="146" y="133.5" width="30" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="retweet-icon"/>
+                                <connections>
+                                    <action selector="didTapRetweet:" destination="kXt-WE-KBK" eventType="touchUpInside" id="vQL-us-If3"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xe-sY-XQV">
                                 <rect key="frame" x="180" y="138.5" width="21" height="20.5"/>
@@ -265,6 +268,9 @@
                                 <rect key="frame" x="231" y="133.5" width="30" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="favor-icon"/>
+                                <connections>
+                                    <action selector="didTapFavorite:" destination="kXt-WE-KBK" eventType="touchUpInside" id="0PZ-d3-FZW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="favs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hs8-KK-JD4">
                                 <rect key="frame" x="265" y="138" width="32" height="21"/>

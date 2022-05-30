@@ -43,6 +43,7 @@
             else{
                 NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
                 [self.favBtn setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+                [self.numOfFavorites setText:[NSString stringWithFormat: @"%d", self.tweet.favoriteCount]];
             }
         }];
     } else {
@@ -57,6 +58,7 @@
             else{
                 NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
                 [self.favBtn setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+                [self.numOfFavorites setText:[NSString stringWithFormat: @"%d", self.tweet.favoriteCount]];
             }
         }];
     }
@@ -75,6 +77,7 @@
             else{
                 NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
                 [self.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+                [self.numOfRetweets setText:[NSString stringWithFormat: @"%d", self.tweet.retweetCount]];
             }
         }];
     } else {
@@ -89,6 +92,7 @@
             else{
                 NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
                 [self.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+                [self.numOfRetweets setText:[NSString stringWithFormat: @"%d", self.tweet.retweetCount]];
             }
         }];
     }
