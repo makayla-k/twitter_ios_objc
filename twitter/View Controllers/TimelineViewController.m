@@ -96,6 +96,9 @@
     cell.tweetContent.text = tweet.text;
     cell.numOfRetweets.text = [NSString stringWithFormat: @"%d", tweet.retweetCount];
     cell.numOfFavorites.text = [NSString stringWithFormat: @"%d", tweet.favoriteCount];
+//    cell.timeLabel.text = [NSString stringWithFormat: @"%@", tweet.createdAtString];
+    cell.timeLabel.text = [NSString stringWithFormat: @"%@", tweet.timeAgoString];
+
     
 //    cell.photoMediaImage.hidden = YES;
     
@@ -141,14 +144,14 @@
         cell.photoMediaBottomConstraint.constant = 0;
     }
     
-    if(tweet.favorited) {
+    if(cell.tweet.favorited) {
         [cell.favBtn setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
     } else {
         [cell.favBtn setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
         
     }
     
-    if(tweet.retweeted) {
+    if(cell.tweet.retweeted) {
         [cell.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
     } else {
         [cell.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];

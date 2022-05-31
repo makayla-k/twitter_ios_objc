@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary *entities;
 @property (nonatomic, strong) NSArray *media;
 @property (nonatomic, strong) NSArray *userMentions;
+@property (nonatomic, strong) NSString *timeAgoString; // Display time ago
+
 
 
 // For Retweets

@@ -47,6 +47,21 @@
             [mention addAttribute: NSLinkAttributeName value:myUrl range: NSMakeRange(range.location-1, range.length+1)];
             self.tweetContent.attributedText = mention;
         }
+    
+//    Change button colors if retweeted or favorited
+    
+    if(self.tweet.favorited) {
+        [self.favBtn setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    } else {
+        [self.favBtn setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+        
+    }
+    
+    if(self.tweet.retweeted) {
+        [self.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+    } else {
+        [self.retweetBtn setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    }
 }
 
 -(IBAction)didTapFavorite:(id) sender {

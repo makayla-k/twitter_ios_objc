@@ -50,6 +50,28 @@
         // Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
         
+//        convert Date to time ago since now
+        NSNumber *myDoubleNumber = [NSNumber numberWithDouble:date.timeIntervalSinceNow];
+        double myNum = labs([myDoubleNumber doubleValue]);
+        int temp;
+        
+        if(myNum > 86400) {
+            temp = (myNum / 86400);
+            self.timeAgoString = [NSString stringWithFormat: @"%dd", temp];
+        }
+        else if(myNum > 3600) {
+            temp = (myNum / 3600);
+            self.timeAgoString = [NSString stringWithFormat: @"%dh", temp];
+        }
+        else if(myNum > 60) {
+            temp = (myNum / 60);
+            self.timeAgoString = [NSString stringWithFormat: @"%dm", temp];
+        }
+        else {
+            temp = (myNum / 6);
+            self.timeAgoString = [NSString stringWithFormat: @"%ds", temp];
+        }
+        
 //        Get entities
         self.entities = dictionary[@"entities"];
         

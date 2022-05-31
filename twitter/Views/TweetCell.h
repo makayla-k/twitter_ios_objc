@@ -24,8 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *numOfFavorites;
 @property (weak, nonatomic) IBOutlet UIImageView *photoMediaImage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *photoMediaBottomConstraint;
-
-
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end
 

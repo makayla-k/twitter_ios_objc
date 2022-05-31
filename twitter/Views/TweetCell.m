@@ -9,6 +9,8 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import "APIManager.h"
+#import "ProfileViewController.h"
+#import "DateTools.h"
 
 @implementation TweetCell
 
@@ -101,7 +103,7 @@
 -(void)profileImageTapDetected{
     NSLog(@"single Tap on imageview %@", self.username.text);
     
-    
+//    ProfileViewController *profile = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileViewController"];
   }
 
 @end
